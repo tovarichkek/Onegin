@@ -1,5 +1,18 @@
 #pragma once
 
+enum TYPE_OF_SORT{
+    BUBBLE_SORT = 0;
+    CHOICE_SORT = 1;
+    QUICK_SORT = 2;
+}
+
+enum COMPARATOR{
+    INCREASING_ORDER = 0;
+    INCREASING_ORDER_FROM_END = 1;
+}
+
+
+
 size_t my_strlen_with_n(const char* str);
 bool comp_str_from_end(const void* x1, const void* x2);
 
