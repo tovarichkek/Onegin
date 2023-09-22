@@ -6,45 +6,19 @@
 
 
 int main(){
-
-/*
-    FILE* file = fopen("ex.txt", "r");
-    char* s = file_to_str(file);
-    int count_of_strs = 1;
-    for(int i = 0; s[i] != '\0'; i++){
-        if(s[i] == '\n'){
-            count_of_strs++;
-        }
-    }
-    char** mass_of_onegin_strs = (char**)calloc(count_of_strs, sizeof(char*));
-    mass_of_onegin_strs[0] = s;
-    int index = 1;
-    for(int i = 1; s[i] != '\0'; i++){
-        if(s[i - 1] == '\n'){
-            mass_of_onegin_strs[index] = s + i;
-            index++;
-        }
-    }
+    FILE* file_source = fopen("ex.txt", "r");
+    int count_of_strs = count_of_strs_in_buff(buff);
+    char** mass_of_onegin_strs = buff_to_dynamic_mass_of_strs(buff, (size_t)count_of_strs);
 
     bubble_sort(sizeof(char*), mass_of_onegin_strs, mass_of_onegin_strs + count_of_strs-1, comp_str);
-    for(int i = 0; i < count_of_strs-1; i++){
-        puts(mass_of_onegin_strs[i]);
-    }
-    free(mass_of_onegin_strs);
-    free(s);
-*/
-    const char** mass_of_p_str = (const char**)calloc(5, sizeof(char*));
-    mass_of_p_str[0] = "csdv";
-    mass_of_p_str[1] = "dcd";
-    mass_of_p_str[2] = "evfs";
-    mass_of_p_str[3] = "bvfs";
-    mass_of_p_str[4] = "avfs";
-    bubble_sort(sizeof(char*), mass_of_p_str, mass_of_p_str + 5, comp_str);
-    for(int i = 0; i < 5; i++){
-        printf("%s ", mass_of_p_str[i]);
-    }
-    printf("\n");
-    free(mass_of_p_str);
 
-    //printf("%d\n", comp_str("csdv", "bvfs"));
+    FILE* file_dest = fopen("out.txt", "w");
+
+    write_mass_of_strs_to_file(file_dest, mass_of_onegin_strs, count_of_strs);
+
+    free(mass_of_onegin_strs);
+    free(buff);
+    fclose(file_source);
+    fclose(file_dest);
+
 }
