@@ -1,5 +1,7 @@
 #pragma once
 
+size_t my_strlen_with_n(const char* str);
+bool comp_str_from_end(const void* x1, const void* x2);
 
 char* file_to_dynamic_str(FILE* file);
 int count_of_strs_in_buff(char* buff);
