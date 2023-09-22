@@ -16,34 +16,18 @@ bool comp_int(const void* x1, const void* x2){
 bool comp_str(const void* x1, const void* x2){
     my_assert(x1 != NULL, printf("pointer to first compared element is NULL\n"); return false);
     my_assert(x2 != NULL, printf("pointer to second compared element is NULL\n"); return false);
-    my_assert(x1 != x2, printf("you compare one element with himself\n"); return false);
     int index = 0;
 
-   /* while((*((const char*)x1 + index) != '\n') && (*((const char*)x1 + index) != '\0') && (*((const char*)x2 + index) != '\n') && (*((const char*)x2 + index) != '\0')){
-        if(*((const char*)x1 + index) > *((const char*)x2 + index)){
+    while((*((*((const char*const*)x1)) + index) != '\n') && (*((*((const char*const*)x1)) + index) != '\0') && (*((*((const char*const*)x2)) + index) != '\n') && (*((*((const char*const*)x2)) + index) != '\0')){
+        if(*((*((const char*const*)x1)) + index) > *((*((const char*const*)x2)) + index)){
             return true;
         }
-        if(*((const char*)x1 + index) < *((const char*)x2 + index)){
+        if(*((*((const char*const*)x1)) + index) < *((*((const char*const*)x2)) + index)){
             return false;
         }
         index++;
     }
-    if(*((const char*)x1 + index) == '\n' || *((const char*)x2 + index) == '\0'){
-        return false;
-    }
-    return false;*/
-
-
-    while((*((*((const char**)x1)) + index) != '\n') && (*((*((const char**)x1)) + index) != '\0') && (*((*((const char**)x2)) + index) != '\n') && (*((*((const char**)x2)) + index) != '\0')){
-        if(*((*((const char**)x1)) + index) > *((*((const char**)x2)) + index)){
-            return true;
-        }
-        if(*((*((const char**)x1)) + index) < *((*((const char**)x2)) + index)){
-            return false;
-        }
-        index++;
-    }
-    if(*((*((const char**)x1)) + index) == '\n' || *((*((const char**)x2)) + index) == '\0'){
+    if(*((*((const char*const*)x1)) + index) == '\n' || *((*((const char*const*)x2)) + index) == '\0'){
         return false;
     }
     return false;
@@ -70,9 +54,6 @@ void my_swap(const int size_of_element, void* x1, void* x2){
         ch_buff = *((char*)x1 + i);
         *((char*)x1 + i) = *((char*)x2 + i);
         *((char*)x2 + i) = ch_buff;
-
-        /* *((char*)x1 + i) = *((char*)x2 + i);
-        *((char*)x2 + i) = ch_buff;*/
     }
 }
 
@@ -90,17 +71,6 @@ void bubble_sort(const int size_of_element, void* start, void* finish, bool(comp
 
         was_swaps = false;
         for(int i = 0; i < len - 1; i++){
-            //for(int i2 = 0; i2 < 5; i2++){
-            //printf("%d", size_of_element);
-         //   printf("%p %p\n", *(char**)((char*)start + i2 * size_of_element), *((char**)start + i2));
-            /*puts(((char*)start + i2 * size_of_element));
-            puts(*((char**)start + i2));*/
-            //printf("%s ", /* *(char**)((char*)start + i2 * size_of_element), */*((char**)start + i2));
-        //    for(int i3 = 0; i3 < 3; i3++){
-          //      printf("%c", (*((char**)((char*)start + i2 * size_of_element)))[i3]);
-          //  }printf("\n");
-        //}//printf("\n\n");
-        //printf("%d\n", size_of_element);
             my_assert((char*)start + (i + 1) * size_of_element < finish, printf("exit from finish\n"); return);
             if(comp((const char*)start + i * size_of_element, (const char*)start + (i + 1) * size_of_element)){
                 my_swap(size_of_element, (char*)start + i * size_of_element, (char*)start + (i + 1) * size_of_element);
@@ -108,10 +78,7 @@ void bubble_sort(const int size_of_element, void* start, void* finish, bool(comp
             }
 
         }
-    }/*
-    for(int i = 0; i < 5; i++){
-            printf("%s ", *((char**)start + i));
-        }    printf("\n");*/
+    }
 }
 
 void choice_sort(const int size_of_element, void* start, void* finish, bool(comp(const void*, const void*))){
